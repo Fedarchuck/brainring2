@@ -11,6 +11,15 @@
     <link rel="stylesheet" href="css/host.css">
 </head>
 <body class="host-page">
+    <div id="connectionWaiting" class="connection-waiting" role="status" aria-live="polite">
+        <div class="connection-waiting__content">
+            <div class="connection-waiting__spinner" aria-hidden="true"></div>
+            <h1>Подключаемся к серверу...</h1>
+            <p>Если сервер долго не использовался, его запуск может занять до 40 секунд. Обычно это происходит только при первом открытии.</p>
+            <p class="connection-waiting__hint">Пожалуйста, не закрывайте страницу.</p>
+        </div>
+    </div>
+
     <div class="host-wrapper">
         <div class="container host-container">
             <!-- Код комнаты -->
@@ -72,7 +81,9 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/config.js"></script>
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js" crossorigin="anonymous"></script>
+    <script src="js/connection.js"></script>
     <script src="js/host.js"></script>
 </body>
 </html>

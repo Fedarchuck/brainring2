@@ -1,4 +1,5 @@
-const socket = io();
+// Socket is configured once in connection.js.
+const socket = window.socket;
 
 const roomCodeDiv = document.getElementById('roomCode');
 const shareLinkInput = document.getElementById('shareLink');
@@ -113,9 +114,14 @@ if (!roomCode) {
         }, 2000);
     });
 
-    // Подключаемся к комнате как host
-    socket.emit('join-room', { roomCode, role: 'host' });
 }
+
+// Socket.IO assigns a new ID after reconnecting, so the host must rejoin the room.
+socket.on('connect', () => {
+    if (roomCode) {
+        socket.emit('join-room', { roomCode, role: 'host' });
+    }
+});
 
 // Обработка обновлений комнаты
 socket.on('roomUpdate', ({ gameId, playersCount, lastWinnerName, locked, players }) => {

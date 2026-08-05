@@ -1,4 +1,5 @@
-const socket = io();
+// Socket is configured once in connection.js.
+const socket = window.socket;
 
 const roomCodeInput = document.getElementById('roomCode');
 const joinBtn = document.getElementById('joinBtn');

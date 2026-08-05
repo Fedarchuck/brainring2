@@ -1,4 +1,5 @@
-const socket = io();
+// Socket is configured once in connection.js.
+const socket = window.socket;
 
 const nameInputState = document.getElementById('nameInputState');
 const gameState = document.getElementById('gameState');
@@ -16,7 +17,7 @@ function applyGameTheme(gameId) {
 }
 
 // Звук для победителя
-const winSound = new Audio('/sounds/The_sound_of_pressin.mp3');
+const winSound = new Audio('sounds/The_sound_of_pressin.mp3');
 winSound.preload = 'auto'; // Предзагрузка звука
 winSound.volume = 1.0; // Устанавливаем максимальную громкость
 let hasPlayedSound = false; // Флаг для предотвращения повторного воспроизведения
@@ -57,8 +58,7 @@ submitNameBtn.addEventListener('click', () => {
     gameState.classList.remove('hidden');
     playerNameDisplay.textContent = playerName;
 
-    // Присоединяемся к комнате
-    socket.emit('join-room', { roomCode, role: 'player', name: playerName });
+    joinRoom();
 });
 
 // Ввод по Enter
@@ -87,6 +87,17 @@ pressBtn.addEventListener('pointerdown', (event) => {
 
 // Поддержка клавиатуры: она не создаёт pointerdown.
 pressBtn.addEventListener('click', sendBuzz);
+
+function joinRoom() {
+    socket.emit('join-room', { roomCode, role: 'player', name: playerName });
+}
+
+// Socket.IO assigns a new ID after reconnecting, so the player must rejoin the room.
+socket.on('connect', () => {
+    if (playerName) {
+        joinRoom();
+    }
+});
 
 // События от сервера
 socket.on('room-joined', ({ roomCode: joinedRoomCode, gameId }) => {
