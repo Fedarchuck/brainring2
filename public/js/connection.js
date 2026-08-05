@@ -7,8 +7,22 @@
     console.info(`Socket.IO connecting to ${BACKEND_URL}`);
 
     const waitingScreen = document.getElementById('connectionWaiting');
+    const waitingScreenDelay = 1200;
+    let waitingScreenTimer;
+
     const showWaitingScreen = () => waitingScreen?.classList.remove('is-hidden');
-    const hideWaitingScreen = () => waitingScreen?.classList.add('is-hidden');
+    const hideWaitingScreen = () => {
+        clearTimeout(waitingScreenTimer);
+        waitingScreen?.classList.add('is-hidden');
+    };
+    const showWaitingScreenIfConnectionIsSlow = () => {
+        clearTimeout(waitingScreenTimer);
+        waitingScreenTimer = setTimeout(() => {
+            if (!window.socket.connected) {
+                showWaitingScreen();
+            }
+        }, waitingScreenDelay);
+    };
 
     window.socket = io(BACKEND_URL, {
         reconnection: true,
@@ -17,7 +31,8 @@
         reconnectionDelayMax: 5000
     });
 
+    showWaitingScreenIfConnectionIsSlow();
     window.socket.on('connect', hideWaitingScreen);
-    window.socket.on('disconnect', showWaitingScreen);
-    window.socket.on('connect_error', showWaitingScreen);
+    window.socket.on('disconnect', showWaitingScreenIfConnectionIsSlow);
+    window.socket.on('connect_error', showWaitingScreenIfConnectionIsSlow);
 })();
