@@ -542,6 +542,25 @@ h2 {
     color: #f5576c;
 }
 
+.player-promo {
+    margin: 24px 0 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.player-promo a {
+    color: #667eea;
+    font-weight: 700;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+}
+
+.player-promo a:hover {
+    color: #764ba2;
+}
+
 .state {
     display: block;
 }
