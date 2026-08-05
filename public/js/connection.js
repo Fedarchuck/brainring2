@@ -8,6 +8,8 @@
 
     const waitingScreen = document.getElementById('connectionWaiting');
     const waitingScreenDelay = 1200;
+    const connectionStorageKey = 'brainRingServerConnected';
+    let hasConnectedThisSession = sessionStorage.getItem(connectionStorageKey) === 'true';
     let waitingScreenTimer;
 
     const showWaitingScreen = () => waitingScreen?.classList.remove('is-hidden');
@@ -15,13 +17,22 @@
         clearTimeout(waitingScreenTimer);
         waitingScreen?.classList.add('is-hidden');
     };
-    const showWaitingScreenIfConnectionIsSlow = () => {
+    const showWaitingScreenForFirstConnection = () => {
+        if (hasConnectedThisSession) {
+            return;
+        }
+
         clearTimeout(waitingScreenTimer);
         waitingScreenTimer = setTimeout(() => {
             if (!window.socket.connected) {
                 showWaitingScreen();
             }
         }, waitingScreenDelay);
+    };
+    const markConnectionAsReady = () => {
+        hasConnectedThisSession = true;
+        sessionStorage.setItem(connectionStorageKey, 'true');
+        hideWaitingScreen();
     };
 
     window.socket = io(BACKEND_URL, {
@@ -31,8 +42,7 @@
         reconnectionDelayMax: 5000
     });
 
-    showWaitingScreenIfConnectionIsSlow();
-    window.socket.on('connect', hideWaitingScreen);
-    window.socket.on('disconnect', showWaitingScreenIfConnectionIsSlow);
-    window.socket.on('connect_error', showWaitingScreenIfConnectionIsSlow);
+    showWaitingScreenForFirstConnection();
+    window.socket.on('connect', markConnectionAsReady);
+    window.socket.on('connect_error', showWaitingScreenForFirstConnection);
 })();
