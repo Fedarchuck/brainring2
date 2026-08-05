@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Ring - Игрок</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Состояние 1: Ввод имени -->
+        <div id="nameInputState" class="state">
+            <h1>Введите ваше имя</h1>
+            <div class="input-section">
+                <input type="text" id="playerName" placeholder="Ваше имя" maxlength="12">
+                <button id="submitNameBtn" class="btn btn-primary">Продолжить</button>
+            </div>
+        </div>
+
+        <!-- Состояние 2: Экран с кнопкой -->
+        <div id="gameState" class="state hidden">
+            <h2 id="playerNameDisplay"></h2>
+            <div class="button-container">
+                <button id="pressBtn" class="btn btn-press">ЖМИ</button>
+            </div>
+            <div id="statusMessage" class="status-message"></div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/player.js"></script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Ring - Комната ведущего</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/host.css">
+</head>
+<body class="host-page">
+    <div class="host-wrapper">
+        <div class="container host-container">
+            <!-- Код комнаты -->
+            <div class="room-code-section">
+                <label class="host-label">Код комнаты:</label>
+                <div class="room-code-card">
+                    <div class="room-code" id="roomCode">---</div>
+                </div>
+            </div>
+
+            <!-- Список игроков -->
+            <div class="players-section">
+                <label class="host-label">Игроки в комнате:</label>
+                <div class="players-card">
+                    <div id="playersList" class="players-list-text"></div>
+                </div>
+            </div>
+
+            <!-- Ссылка для входа -->
+            <div class="share-section">
+                <label class="host-label">Ссылка для входа:</label>
+                <div class="share-input-wrapper">
+                    <input type="text" id="shareLink" class="share-input" readonly>
+                </div>
+            </div>
+
+            <!-- Кнопка копировать -->
+            <div class="copy-section">
+                <button id="copyBtn" class="btn btn-copy">КОПИРОВАТЬ</button>
+            </div>
+
+            <!-- Статистика -->
+            <div class="stats-section">
+                <div class="stat-item stat-participants">
+                    <label class="stat-label">Участников в комнате:</label>
+                    <div class="stat-value-wrapper">
+                        <div class="stat-value" id="playersCount">0</div>
+                        <svg class="user-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="#667eea"/>
+                            <path d="M12 14C7.58172 14 4 16.6863 4 20V22H20V20C20 16.6863 16.4183 14 12 14Z" fill="#667eea"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="stat-item stat-winner">
+                    <label class="stat-label">Последний победитель:</label>
+                    <div class="stat-value winner-name" id="lastWinnerName">—</div>
+                </div>
+            </div>
+
+            <!-- QR-код -->
+            <div class="qr-section">
+                <label class="host-label">QR-код:</label>
+                <div class="qr-card">
+                    <div id="qr"></div>
+                </div>
+                <a id="qrLink" href="#" target="_blank" class="qr-link"></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/host.js"></script>
+</body>
+</html>

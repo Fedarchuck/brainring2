@@ -1,0 +1,77 @@
+/* ============================================
+   HOST PAGE - DESKTOP FIXES ONLY
+   ============================================ */
+
+@media (min-width: 1024px) {
+    /* 1) Белые подписи/лейблы на градиентном фоне */
+    .host-label {
+        color: #ffffff !important;
+        font-weight: 400;
+    }
+
+    /* 2) Точное вертикальное выравнивание текста в input */
+    .share-input-wrapper {
+        display: flex;
+        align-items: center;
+        padding: 0 30px;
+    }
+
+    .share-input {
+        height: 70px;
+        line-height: 70px;
+        padding: 0 !important;
+        margin: 0;
+        border: none;
+        outline: none;
+        vertical-align: middle;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+        color: #000000;
+        background: transparent;
+    }
+
+    /* 3) Уменьшенный QR-код - заканчивается на уровне нижних карточек */
+    .qr-card {
+        min-height: 430px !important;
+        max-height: 380px;
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #qr {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #qr canvas {
+        width: 100% !important;
+        max-width: 5000px !important;
+        height: auto !important;
+        aspect-ratio: 1;
+    }
+
+    /* Дополнительно: убеждаемся, что QR-секция не растягивается */
+    .qr-section {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .qr-section .host-label {
+        margin-bottom: 12px;
+        align-self: flex-start;  /* ← Добавьте это: выравнивание подписи по левому краю */
+        text-align: left !important;
+    }
+}
+
+    .room-code-section .host-label {
+        align-self: flex-start !important;
+        text-align: left !important;
+}
+

@@ -1,0 +1,1689 @@
+@font-face {
+    font-family: "ARCO";
+    src: url("/fonts/ARCOCyrillic.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Fallback для ARCO если woff2 нет */
+@font-face {
+    font-family: "ARCO";
+    src: url("/fonts/ofont.ru_Arco.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(180deg, rgba(104, 118, 223, 1) 0%, rgba(114, 88, 180, 1) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.main-logo {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 30px 20px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Логотип */
+.logo-img {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 15px;
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+h2 {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+}
+
+.input-section {
+    margin-bottom: 20px;
+}
+
+.input-section label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    font-weight: 500;
+}
+
+.input-section input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+}
+
+.input-section input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.btn-info {
+    background: #f0f0f0;
+    color: #333;
+    margin-top: 15px;
+}
+
+.btn-info:hover:not(:disabled) {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.btn-info + .btn-info {
+    margin-top: 10px;
+}
+
+.btn-press {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    font-size: 28px;
+    padding: 25px;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.btn-press:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6);
+}
+
+.btn-press:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-small {
+    width: auto;
+    padding: 8px 16px;
+    font-size: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.divider {
+    text-align: center;
+    margin: 25px 0;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+.divider span {
+    background: white;
+    padding: 0 15px;
+    color: #999;
+}
+
+.error-message {
+    color: #f5576c;
+    text-align: center;
+    margin-top: 15px;
+    min-height: 20px;
+    font-weight: 500;
+}
+
+/* Модальное окно с информацией */
+.info-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.info-modal.show {
+    display: flex;
+}
+
+.info-modal-content {
+    background: white;
+    border-radius: 40px;
+    padding: 40px 60px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 4px solid #667eea;
+}
+
+.info-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #667eea;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: all 0.3s;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.info-modal-close:hover {
+    color: #764ba2;
+    background-color: rgba(102, 126, 234, 0.1);
+    transform: scale(1.1);
+}
+
+.info-modal-body {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    padding-bottom: 20px;
+}
+
+.info-modal-image {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.info-modal-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.info-modal-body p {
+    margin-bottom: 15px;
+}
+
+.info-modal-body p:first-child {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 18px;
+    font-size: 17px;
+}
+
+.info-modal-body ul {
+    margin: 15px 0 18px 25px;
+    padding-left: 0;
+    list-style-type: disc;
+}
+
+.info-modal-body li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.info-modal-body p:last-child {
+    margin-bottom: 0;
+    margin-top: 15px;
+}
+
+/* Выбор игры */
+.game-modal-content {
+    max-width: 460px;
+    padding: 36px;
+}
+
+.game-modal-body h2 {
+    color: #333;
+    margin-bottom: 24px;
+}
+
+.game-option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
+    margin-top: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 14px;
+    background: #f8f8f8;
+    color: #333;
+    font: inherit;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
+}
+
+.game-option:hover,
+.game-option.selected {
+    border-color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.game-option:hover {
+    transform: translateY(-2px);
+}
+
+.game-option.selected::after {
+    content: '✓';
+    color: #667eea;
+    font-size: 24px;
+}
+
+.game-option small {
+    color: #777;
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: auto;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 767px) {
+    .logo-wrapper {
+        margin-bottom: 20px;
+        padding: 0 15px;
+    }
+
+    .main-logo {
+        max-width: 250px;
+    }
+
+    .info-modal-content {
+        padding: 30px 25px;
+        border-radius: 30px;
+        border-width: 3px;
+        max-width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .info-modal-close {
+        top: 15px;
+        right: 15px;
+        font-size: 28px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .info-modal-body {
+        font-size: 16px;
+        padding-bottom: 20px;
+    }
+
+    .info-modal-image {
+        margin-bottom: 20px;
+    }
+
+    .info-modal-image img {
+        border-radius: 16px;
+    }
+
+    .info-modal-body p:first-child {
+        font-size: 17px;
+    }
+
+    .game-modal-content {
+        padding: 30px 25px;
+    }
+}
+
+
+
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 220px;
+    margin: 20px 0;
+}
+
+.status-message {
+    text-align: center;
+    margin-top: 15px;
+    min-height: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+}
+
+.status-message.winner {
+    color: #4caf50;
+    font-size: 20px;
+}
+
+.status-message.locked {
+    color: #f5576c;
+}
+
+.state {
+    display: block;
+}
+
+.state.hidden {
+    display: none;
+}
+
+.room-code-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.room-code-section label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.room-code-card {
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.room-code {
+    font-size: 36px;
+    font-weight: bold;
+    color: #667eea;
+    letter-spacing: 8px;
+    padding: 0;
+    background: transparent;
+    font-family: 'Courier New', monospace;
+}
+
+.share-section {
+    margin-bottom: 20px;
+}
+
+.share-section label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.share-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.btn-copy {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stats-section {
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #667eea;
+    line-height: 1;
+}
+
+.winner-name {
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.right-column {
+    display: block;
+}
+
+.players-section {
+    margin-bottom: 20px;
+}
+
+.players-section label {
+    display: block;
+    margin-bottom: 15px;
+    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.players-card {
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#playersList {
+    list-style: none;
+    padding: 10px 10px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#playersList li {
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.qr-section {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.qr-section label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.qr-card {
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#qr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+#qr canvas {
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+}
+
+.qr-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #667eea;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+/* ============================================
+   HOST PAGE - COMPLETELY NEW DESIGN FROM ZERO
+   ============================================ */
+
+/* Base styles for host page */
+body.host-page {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(180deg, rgba(104, 118, 223, 1) 0%, rgba(114, 88, 180, 1) 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* Убираем белый фон у container для host-page */
+body.host-page .container.host-container {
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+.host-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    padding: 60px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.host-container {
+    width: 100%;
+    max-width: 1500px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 40px;
+    align-items: start;
+}
+
+/* Desktop-specific styles */
+@media (min-width: 1024px) {
+    body.host-page {
+        overflow: hidden;
+    }
+
+    .host-wrapper {
+        padding: 20px 40px;
+        height: 100vh;
+        align-items: center;
+    }
+
+    .host-container {
+        gap: 20px;
+        max-height: calc(100vh - 40px);
+    }
+
+    /* Уменьшаем отступы у секций для компактности */
+    .room-code-section {
+        margin-bottom: 0;
+    }
+
+    .players-section {
+        margin-bottom: 0;
+    }
+
+    .share-section {
+        margin-bottom: 0;
+    }
+
+    .host-label {
+        margin-bottom: 12px;
+        font-size: 22px;
+    }
+
+    /* Компактные размеры карточек */
+    .room-code-card {
+        padding: 50px 40px;
+    }
+
+    .players-card {
+        padding: 50px 40px;
+        min-height: 200px;
+    }
+
+    .stat-item {
+        padding: 30px 25px;
+    }
+
+    .stat-label {
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+
+    .stat-value {
+        font-size: 85px;
+    }
+
+    .winner-name {
+        font-size: 50px;
+    }
+
+    .qr-card {
+        padding: 30px;
+        min-height: 450px;
+    }
+
+    /* Компактные размеры полей */
+    .share-input-wrapper {
+        height: 70px;
+    }
+
+    .share-input {
+        height: 70px;
+        line-height: 70px;
+        font-size: 18px;
+    }
+
+    .btn-copy {
+        height: 70px;
+        font-size: 18px;
+    }
+
+    /* Уменьшаем gap в stats */
+    .stats-section {
+        gap: 20px;
+    }
+}
+
+/* Labels */
+.host-label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+/* Room Code Section */
+.room-code-section {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.room-code-card {
+    background: #ffffff;
+    border-radius: 40px;
+    padding: 60px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 4px solid #e0e0e0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.room-code-card::before {
+    content: '';
+    position: absolute;
+    inset: 16px;
+    border-radius: 32px;
+    border: 3px solid #999999;
+    pointer-events: none;
+}
+
+.room-code {
+    font-family: 'ARCO', 'Courier New', monospace;
+    font-weight: 400;
+    font-size: 100px;
+    color: #667eea;
+    letter-spacing: 16px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Players Section */
+.players-section {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.players-card {
+    background: #ffffff;
+    border-radius: 40px;
+    padding: 20px 15px;
+    border: 4px solid #e0e0e0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    min-height: 240px;
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+}
+
+/* Desktop: увеличенные отступы для списка игроков */
+@media (min-width: 1024px) {
+    .players-card {
+        padding: 15px;
+    }
+    
+    .players-list-text {
+        max-height: calc(100vh - 350px);
+    }
+}
+
+.players-card::before {
+    display: none;
+}
+
+.players-list-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: #223484;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 35px;
+    border: 3px solid rgba(0, 0, 0, 0.08);
+    border-radius: 32px;
+    min-height: calc(100% - 30px);
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+}
+
+/* Share Section */
+.share-section {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.share-input-wrapper {
+    width: 100%;
+    height: 80px;
+    background: #dfdfdf;
+    border-radius: 30px;
+    border: 5px solid #000000;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.share-input {
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+    background: transparent;
+    border: none;
+    outline: none;
+    line-height: 80px;
+    height: 80px;
+    padding: 0;
+}
+
+/* Desktop: точное вертикальное выравнивание текста */
+@media (min-width: 1024px) {
+    .share-input {
+        line-height: 80px;
+        height: 80px;
+    }
+}
+
+
+/* Copy Button */
+.copy-section {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+/* Desktop: уменьшенный отступ между полем ссылки и кнопкой */
+@media (min-width: 1024px) {
+    .share-section {
+        margin-bottom: 0;
+    }
+
+    .copy-section {
+        margin-top: -8px;
+    }
+}
+
+.btn-copy {
+    width: 100%;
+    height: 80px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background: linear-gradient(90deg, rgba(0, 81, 255, 1) 0%, rgba(0, 41, 153, 1) 100%);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-copy:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 81, 255, 0.4);
+}
+
+/* Stats Section */
+.stats-section {
+    grid-column: 1;
+    grid-row: 4;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.stat-item {
+    background: #ffffff;
+    border-radius: 40px;
+    padding: 40px 30px;
+    border: 8px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.stat-participants {
+    border-color: #6274ff;
+}
+
+.stat-winner {
+    border-color: #667eea;
+}
+
+.stat-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: #616161;
+    margin-bottom: 24px;
+}
+
+.stat-value-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.stat-value {
+    font-family: 'ARCO', 'Courier New', monospace;
+    font-weight: 400;
+    font-size: 100px;
+    color: #667eea;
+    line-height: 1;
+}
+
+.user-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+}
+
+.winner-name {
+    font-family: 'ARCO', 'Courier New', monospace;
+    font-weight: 400;
+    font-size: 60px;
+    color: #667eea;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1;
+}
+
+/* QR Section */
+.qr-section {
+    grid-column: 2;
+    grid-row: 2 / span 3;
+}
+
+.qr-card {
+    background: #ffffff;
+    border-radius: 40px;
+    padding: 40px;
+    border: 4px solid #e0e0e0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+    position: relative;
+}
+
+.qr-card::before {
+    content: '';
+    position: absolute;
+    inset: 16px;
+    border-radius: 32px;
+    border: 3px solid rgba(0, 0, 0, 0.08);
+    pointer-events: none;
+}
+
+#qr {
+    position: relative;
+    z-index: 1;
+}
+
+#qr canvas {
+    width: 50%;
+    max-width: 400px;
+    height: auto;
+}
+
+.qr-link {
+    display: none;
+}
+
+/* Mobile Styles */
+@media (max-width: 1023px) {
+    .host-wrapper {
+        padding: 20px 15px;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    .host-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Белые подписи на мобильных */
+    .host-label {
+        color: #ffffff !important;
+    }
+    
+    .stat-label {
+        color: #ffffff !important;
+    }
+    
+    /* Черные подписи для карточек статистики на мобильных */
+    .stat-participants .stat-label,
+    .stat-winner .stat-label {
+        color: #616161 !important;
+    }
+
+    .room-code-section,
+    .players-section,
+    .share-section,
+    .copy-section,
+    .stats-section,
+    .qr-section {
+        grid-column: 1;
+        margin-bottom: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .room-code-section {
+        grid-row: 1;
+        text-align: left;
+    }
+    
+    .room-code-section .host-label {
+        text-align: left !important;
+    }
+
+    .players-section {
+        grid-row: 2;
+        text-align: left;
+    }
+    
+    .players-section .host-label {
+        text-align: left !important;
+    }
+
+    .share-section {
+        grid-row: 3;
+        text-align: left;
+    }
+    
+    .share-section .host-label {
+        text-align: left !important;
+    }
+
+    .copy-section {
+        grid-row: 4;
+    }
+
+    .stats-section {
+        grid-row: 5;
+    }
+
+    .qr-section {
+        grid-row: 7;
+        text-align: left;
+    }
+    
+    .qr-section .host-label {
+        text-align: left !important;
+    }
+
+    .host-label {
+        font-size: 20px;
+        color: #ffffff !important;
+    }
+    
+    .stat-label {
+        color: #ffffff !important;
+    }
+    
+    /* Черные подписи для карточек статистики на мобильных */
+    .stat-participants .stat-label,
+    .stat-winner .stat-label {
+        color: #616161 !important;
+    }
+
+    .room-code-card {
+        padding: 30px 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .room-code {
+        font-size: 60px;
+        letter-spacing: 10px;
+    }
+
+    .players-card {
+        padding: 30px 20px;
+        min-height: auto;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .players-list-text {
+        font-size: 20px;
+    }
+
+    .share-input-wrapper {
+        height: 56px;
+        padding: 0 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .share-input {
+        font-size: 16px;
+    }
+
+    .btn-copy {
+        height: 56px;
+        font-size: 16px;
+        margin-top: 0;
+    }
+    
+    .copy-section {
+        margin-top: 0;
+    }
+
+    .stats-section {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .stat-item {
+        padding: 24px 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .stat-value {
+        font-size: 70px;
+    }
+
+    .winner-name {
+        font-size: 40px;
+    }
+
+    .qr-card {
+        min-height: 350px;
+        padding: 24px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #qr {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #qr canvas,
+    #qr img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+/* ============================================
+   ДОПОЙ ХИТ — контрастная граффити-тема
+   ============================================ */
+body.theme-dapoi-hit,
+body.host-page.theme-dapoi-hit {
+    background: #101010;
+    color: #ffffff;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+}
+
+body.theme-dapoi-hit::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.9;
+    background:
+        linear-gradient(115deg, transparent 0 34%, rgba(197, 247, 2, 0.16) 34% 36%, transparent 36% 100%),
+        repeating-linear-gradient(-24deg, transparent 0 72px, rgba(255, 255, 255, 0.06) 72px 76px, transparent 76px 150px);
+}
+
+body.theme-dapoi-hit .container:not(.host-container) {
+    background: #c5f702;
+    border: 4px solid #101010;
+    border-radius: 0;
+    box-shadow: 10px 10px 0 #ffffff;
+}
+
+body.theme-dapoi-hit h1,
+body.theme-dapoi-hit h2,
+body.theme-dapoi-hit .input-section label,
+body.theme-dapoi-hit .game-modal-body h2 {
+    color: #101010;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+body.theme-dapoi-hit .input-section input,
+body.theme-dapoi-hit .share-input {
+    border: 3px solid #101010;
+    border-radius: 0;
+    background: #ffffff;
+    color: #101010;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body.theme-dapoi-hit .btn {
+    border: 3px solid #101010;
+    border-radius: 0;
+    box-shadow: 5px 5px 0 #101010;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    letter-spacing: 0.1em;
+}
+
+body.theme-dapoi-hit .btn-primary,
+body.theme-dapoi-hit .btn-secondary,
+body.theme-dapoi-hit .btn-info {
+    background: #101010;
+    color: #c5f702;
+}
+
+body.theme-dapoi-hit .btn:hover:not(:disabled) {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 #101010;
+}
+
+body.theme-dapoi-hit .divider::before,
+body.theme-dapoi-hit .divider::after {
+    background: #101010;
+}
+
+body.theme-dapoi-hit .divider span {
+    background: #c5f702;
+    color: #101010;
+}
+
+body.theme-dapoi-hit .info-modal {
+    background: rgba(16, 16, 16, 0.88);
+}
+
+body.theme-dapoi-hit .info-modal-content,
+body.theme-dapoi-hit .game-modal-content {
+    background: #c5f702;
+    border: 4px solid #101010;
+    border-radius: 0;
+    box-shadow: 10px 10px 0 #ffffff;
+}
+
+body.theme-dapoi-hit .info-modal-close {
+    color: #101010;
+}
+
+body.theme-dapoi-hit .game-option {
+    border: 3px solid #101010;
+    border-radius: 0;
+    background: #ffffff;
+    color: #101010;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+}
+
+body.theme-dapoi-hit .game-option:hover,
+body.theme-dapoi-hit .game-option.selected {
+    border-color: #101010;
+    background: #101010;
+    color: #c5f702;
+}
+
+body.theme-dapoi-hit .game-option.selected::after {
+    color: #c5f702;
+}
+
+body.theme-dapoi-hit .game-option small {
+    color: inherit;
+}
+
+body.theme-dapoi-hit .btn-press {
+    background: #c5f702;
+    color: #101010;
+    border: 6px solid #101010;
+    box-shadow: 10px 10px 0 #ffffff;
+    transform: rotate(-4deg);
+}
+
+body.theme-dapoi-hit .btn-press:hover:not(:disabled) {
+    transform: rotate(3deg) scale(1.04);
+    box-shadow: 14px 14px 0 #ffffff;
+}
+
+body.theme-dapoi-hit .btn-press:disabled {
+    background: #555555;
+    color: #ffffff;
+}
+
+body.host-page.theme-dapoi-hit .host-label {
+    color: #c5f702 !important;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+body.host-page.theme-dapoi-hit .room-code-card,
+body.host-page.theme-dapoi-hit .players-card,
+body.host-page.theme-dapoi-hit .qr-card,
+body.host-page.theme-dapoi-hit .stat-item {
+    background: #ffffff;
+    border-color: #c5f702;
+    border-radius: 0;
+    box-shadow: 9px 9px 0 #c5f702;
+}
+
+body.host-page.theme-dapoi-hit .room-code-card::before,
+body.host-page.theme-dapoi-hit .qr-card::before {
+    border-color: #101010;
+    border-radius: 0;
+}
+
+body.host-page.theme-dapoi-hit .room-code,
+body.host-page.theme-dapoi-hit .stat-value,
+body.host-page.theme-dapoi-hit .winner-name,
+body.host-page.theme-dapoi-hit .players-list-text {
+    color: #101010;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body.host-page.theme-dapoi-hit .players-list-text {
+    border-color: #101010;
+    border-radius: 0;
+}
+
+body.host-page.theme-dapoi-hit .share-input-wrapper {
+    background: #ffffff;
+    border-color: #c5f702;
+    border-radius: 0;
+}
+
+body.host-page.theme-dapoi-hit .btn-copy {
+    background: #c5f702;
+    color: #101010;
+    border: 4px solid #101010;
+    border-radius: 0;
+    box-shadow: 7px 7px 0 #ffffff;
+}
+
+body.host-page.theme-dapoi-hit .user-icon path {
+    fill: #101010;
+}
+
+/* Главный экран: лёгкий шрифт на кнопках для читаемости */
+#joinBtn,
+#createBtn,
+#infoBtn,
+#gameBtn,
+.game-option {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 400;
+}
+
+body.theme-dapoi-hit #joinBtn,
+body.theme-dapoi-hit #createBtn,
+body.theme-dapoi-hit #infoBtn,
+body.theme-dapoi-hit #gameBtn,
+body.theme-dapoi-hit .game-option {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 400;
+}
+
+body.theme-dapoi-hit #joinBtn:hover:not(:disabled),
+body.theme-dapoi-hit #createBtn:hover:not(:disabled),
+body.theme-dapoi-hit #infoBtn:hover:not(:disabled),
+body.theme-dapoi-hit #gameBtn:hover:not(:disabled) {
+    background: #ffffff;
+    color: #101010;
+}
+
+/* На экране ведущего убираем чёрную рамку вокруг ссылки для входа */
+body.host-page.theme-dapoi-hit .share-input {
+    border-color: transparent;
+}
+
+@media (max-width: 767px) {
+    .host-wrapper {
+        padding: 15px 10px;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    .host-container {
+        gap: 12px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .host-label {
+        font-size: 18px;
+        margin-bottom: 8px;
+        color: #ffffff !important;
+        text-align: left !important;
+    }
+    
+    /* Выравнивание всех подписей по левому краю на мобильных */
+    .room-code-section,
+    .players-section,
+    .share-section,
+    .qr-section {
+        text-align: left;
+    }
+    
+    .room-code-section .host-label,
+    .players-section .host-label,
+    .share-section .host-label,
+    .qr-section .host-label {
+        text-align: left !important;
+    }
+    
+    .stat-label {
+        color: #ffffff !important;
+        margin-bottom: 12px;
+    }
+    
+    /* Черные подписи для карточек статистики на мобильных */
+    .stat-participants .stat-label,
+    .stat-winner .stat-label {
+        color: #616161 !important;
+    }
+
+    .room-code-card {
+        padding: 24px 16px;
+        border-radius: 30px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .room-code-card::before {
+        inset: 10px;
+        border-radius: 20px;
+    }
+
+    .room-code {
+        font-size: 38px;
+        letter-spacing: 5px;
+    }
+
+    .players-card {
+        padding: 24px 16px;
+        border-radius: 30px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .players-card::before {
+        inset: 10px;
+        border-radius: 20px;
+    }
+
+    .players-list-text {
+        font-size: 18px;
+    }
+
+    .share-input-wrapper {
+        height: 52px;
+        border-radius: 24px;
+        border-width: 3px;
+        padding: 0 14px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .share-input {
+        font-size: 14px;
+    }
+
+    .btn-copy {
+        height: 52px;
+        border-radius: 24px;
+        font-size: 14px;
+        letter-spacing: 1px;
+        margin-top: 6px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .stat-item {
+        padding: 20px 16px;
+        border-radius: 30px;
+        border-width: 4px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .stat-label {
+        font-size: 16px;
+        margin-bottom: 12px;
+        color: #ffffff !important;
+    }
+    
+    /* Черные подписи для карточек статистики на мобильных */
+    .stat-participants .stat-label,
+    .stat-winner .stat-label {
+        color: #616161 !important;
+    }
+
+    .stat-value {
+        font-size: 48px;
+    }
+
+    .user-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .winner-name {
+        font-size: 28px;
+        letter-spacing: 1px;
+    }
+
+    .qr-section {
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .qr-section .host-label {
+        text-align: left !important;
+        align-self: flex-start;
+    }
+
+    .qr-card {
+        padding: 20px;
+        border-radius: 30px;
+        min-height: 300px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .qr-card::before {
+        inset: 10px;
+        border-radius: 20px;
+    }
+
+    #qr {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #qr canvas,
+    #qr img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Ring - Вход</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Модальное окно с информацией о приложении -->
+    <div id="infoModal" class="info-modal">
+        <div class="info-modal-content">
+            <button class="info-modal-close" id="infoModalClose">&times;</button>
+            <div class="info-modal-body">
+                <div class="info-modal-image">
+                    <img src="img/info.png" alt="Brain Ring - Игровое шоу">
+                </div>
+                <p>Когда на викторине все кричат «я первый!» — Brain Ring решает спор за секунду.</p>
+                <p>Это онлайн-система кнопок:</p>
+                <ul>
+                    <li>участники нажимают с телефонов</li>
+                    <li>система фиксирует первого</li>
+                    <li>остальные кнопки блокируются</li>
+                </ul>
+                <p>Никакого оборудования за десятки тысяч рублей.<br>Только браузер и QR-код.</p>
+                <p>Идеально для квизов, мероприятий и интерактивных игр.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно выбора игры -->
+    <div id="gameModal" class="info-modal" aria-hidden="true">
+        <div class="info-modal-content game-modal-content" role="dialog" aria-modal="true" aria-labelledby="gameModalTitle">
+            <button class="info-modal-close" id="gameModalClose" aria-label="Закрыть">&times;</button>
+            <div class="game-modal-body">
+                <h2 id="gameModalTitle">Выберите игру</h2>
+                <button class="game-option" type="button" data-game="brain-ring">
+                    <span>Brain Ring</span>
+                    <small>По умолчанию</small>
+                </button>
+                <button class="game-option" type="button" data-game="dapoi-hit">
+                    <span>Допой Хит!</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="logo-wrapper">
+        <img src="img/PPTFUNZONE.png" alt="PPT FUNZONE" class="main-logo">
+    </div>
+
+    <div class="container">
+        <h1>Brain Ring</h1>
+        
+        <div class="input-section">
+            <label for="roomCode">Введите код комнаты (6 цифр)</label>
+            <input type="text" id="roomCode" maxlength="6" placeholder="000000" pattern="[0-9]{6}">
+            <button id="joinBtn" class="btn btn-primary">Войти</button>
+        </div>
+
+        <div class="divider">
+            <span>или</span>
+        </div>
+
+        <button id="createBtn" class="btn btn-secondary">Создать комнату</button>
+
+        <button id="infoBtn" class="btn btn-info">О приложении</button>
+        <button id="gameBtn" class="btn btn-info">Выбрать игру: Brain Ring</button>
+
+        <div id="error" class="error-message"></div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
+
+
+
+
