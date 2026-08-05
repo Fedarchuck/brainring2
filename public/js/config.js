@@ -6,7 +6,7 @@
 const LOCAL_HOSTS = new Set(['localhost', '127.0.0.1', '::1']);
 const isLocalEnvironment = LOCAL_HOSTS.has(window.location.hostname);
 const localBackendUrl = `http://${window.location.hostname}:3000`;
-const productionBackendUrl = 'https://YOUR-RENDER-SERVICE.onrender.com';
+const productionBackendUrl = 'https://brainring2.onrender.com';
 
 window.APP_CONFIG = {
     BACKEND_URL: isLocalEnvironment ? localBackendUrl : productionBackendUrl,
